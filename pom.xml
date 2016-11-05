@@ -7,8 +7,53 @@
     <groupId>com.peierlong</groupId>
     <artifactId>WeSub</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
+    <name>WeSub</name>
+    <url>http://www.peierlong.com</url>
+
+    <build>
+        <finalName>WeSub</finalName>
+    </build>
 
     <dependencies>
+        <!-- base -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.3.3.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.2.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.2.4.RELEASE</version>
+        </dependency>
+        <!-- db -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>1.4.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.4.2.RELEASE</version>
+        </dependency>
+        <!-- util -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.14</version>
+        </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -21,6 +66,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
 </project>
