@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' debug="true"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://jakarta.apache.org/log4j/ ">
+
+    <appender name="ROLLING" class="org.apache.log4j.RollingFileAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %5p %c %x - %m%n"/>
+        </layout>
+        <param name="File" value="/var/log/4j/log_gsX.log"/>
+        <param name="MaxFileSize" value="50MB"/>
+        <param name="MaxBackupIndex" value="9"/>
+    </appender>
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p [%c] - %m%n"/>
+        </layout>
+        <param name="Threshold" value="info"/>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="812600"/>
+        <param name="Blocking" value="false"/>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <root>
+        <level value="warn"/>
+    </root>
+
+    <!-- 日志改为异步记录 -->
+    <logger name="com.peierlong">
+        <level value="debug"/>
+        <appender-ref ref="ASYNC"/>
+    </logger>
+</log4j:configuration>
