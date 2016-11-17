@@ -1,4 +1,4 @@
-package com.peierlong.entity;
+package com.peierlong.message;
 
 /**
  * 包名: com.peierlong.entity
