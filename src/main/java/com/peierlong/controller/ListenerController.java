@@ -7,6 +7,7 @@ import com.peierlong.utils.XmlUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,11 +23,26 @@ import java.util.Map;
  * 描述 : 事件监听Controller类
  */
 @Controller
-public class ListenerController {
+public class ListenerController extends BaseController{
     private static Logger logger = LoggerFactory.getLogger(ListenerController.class);
-
     @Autowired
-    private ListenerService listenerService;
+    @Qualifier("event")
+    private ListenerService eventListenerService;
+    @Autowired
+    @Qualifier("image")
+    private ListenerService imageListenerService;
+    @Autowired
+    @Qualifier("link")
+    private ListenerService linkListenerService;
+    @Autowired
+    @Qualifier("location")
+    private ListenerService locationListenerService;
+    @Autowired
+    @Qualifier("text")
+    private ListenerService textListenerService;
+    @Autowired
+    @Qualifier("voice")
+    private ListenerService voiceListenerService;
 
     /**
      * 开启开发者模式时, 微信回调GET方法, 暂不进行加密校验, 直接返回参数表示成功
@@ -52,7 +68,28 @@ public class ListenerController {
         }
         if (requestContent == null) return GlobalConstant.SUCCESS;
         logger.info("POST请求 > listener() > 参数: request = {}", JSON.toJSONString(requestContent));
-        return listenerService.processListenerContent(requestContent);
+        String result = GlobalConstant.SUCCESS;
+        switch (requestContent.get("MsgType")) {
+            case GlobalConstant.REQ_MESSAGE_TYPE_EVENT: // 事件
+                result = eventListenerService.processListenerContent(requestContent);
+                break;
+            case GlobalConstant.REQ_MESSAGE_TYPE_TEXT:  // 文本
+                result = textListenerService.processListenerContent(requestContent);
+                break;
+            case GlobalConstant.REQ_MESSAGE_TYPE_IMAGE: // 图片
+                result = imageListenerService.processListenerContent(requestContent);
+                break;
+            case GlobalConstant.REQ_MESSAGE_TYPE_VOICE: // 音频
+                result = voiceListenerService.processListenerContent(requestContent);
+                break;
+            case GlobalConstant.REQ_MESSAGE_TYPE_LINK: //链接
+                result = linkListenerService.processListenerContent(requestContent);
+                break;
+            case GlobalConstant.REQ_MESSAGE_TYPE_LOCATION: // 地理位置
+                result = locationListenerService.processListenerContent(requestContent);
+                break;
+        }
+        return result;
     }
 
 }
