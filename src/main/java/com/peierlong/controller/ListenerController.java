@@ -70,25 +70,28 @@ public class ListenerController extends BaseController{
         logger.info("POST请求 > listener() > 参数: request = {}", JSON.toJSONString(requestContent));
         String result = GlobalConstant.SUCCESS;
         switch (requestContent.get("MsgType")) {
-            case GlobalConstant.REQ_MESSAGE_TYPE_EVENT: // 事件
+            case GlobalConstant.MESSAGE_TYPE_EVENT: // 事件
                 result = eventListenerService.processListenerContent(requestContent);
                 break;
-            case GlobalConstant.REQ_MESSAGE_TYPE_TEXT:  // 文本
+            case GlobalConstant.MESSAGE_TYPE_TEXT:  // 文本
                 result = textListenerService.processListenerContent(requestContent);
                 break;
-            case GlobalConstant.REQ_MESSAGE_TYPE_IMAGE: // 图片
+            case GlobalConstant.MESSAGE_TYPE_IMAGE: // 图片
                 result = imageListenerService.processListenerContent(requestContent);
                 break;
-            case GlobalConstant.REQ_MESSAGE_TYPE_VOICE: // 音频
+            case GlobalConstant.MESSAGE_TYPE_VOICE: // 音频
                 result = voiceListenerService.processListenerContent(requestContent);
                 break;
-            case GlobalConstant.REQ_MESSAGE_TYPE_LINK: //链接
+            case GlobalConstant.MESSAGE_TYPE_LINK: //链接
                 result = linkListenerService.processListenerContent(requestContent);
                 break;
-            case GlobalConstant.REQ_MESSAGE_TYPE_LOCATION: // 地理位置
+            case GlobalConstant.MESSAGE_TYPE_LOCATION: // 地理位置
                 result = locationListenerService.processListenerContent(requestContent);
                 break;
         }
+
+        logger.info(result);
+
         return result;
     }
 

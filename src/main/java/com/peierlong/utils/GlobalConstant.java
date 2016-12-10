@@ -13,49 +13,44 @@ public interface GlobalConstant {
     String SUCCESS = "success";
 
     /**
-     * 返回消息类型：文本
+     * 消息类型：文本
      */
-    String RESP_MESSAGE_TYPE_TEXT = "text";
+    String MESSAGE_TYPE_TEXT = "text";
 
     /**
-     * 返回消息类型：音乐
+     * 消息类型：音乐
      */
-    String RESP_MESSAGE_TYPE_MUSIC = "music";
+    String MESSAGE_TYPE_MUSIC = "music";
 
     /**
-     * 返回消息类型：图文
+     * 消息类型：图文
      */
-    String RESP_MESSAGE_TYPE_NEWS = "news";
+    String MESSAGE_TYPE_NEWS = "news";
 
     /**
-     * 请求消息类型：文本
+     * 消息类型：图片
      */
-    String REQ_MESSAGE_TYPE_TEXT = "text";
+    String MESSAGE_TYPE_IMAGE = "image";
 
     /**
-     * 请求消息类型：图片
+     * 消息类型：链接
      */
-    String REQ_MESSAGE_TYPE_IMAGE = "image";
+    String MESSAGE_TYPE_LINK = "link";
 
     /**
-     * 请求消息类型：链接
+     * 消息类型：地理位置
      */
-    String REQ_MESSAGE_TYPE_LINK = "link";
+    String MESSAGE_TYPE_LOCATION = "location";
 
     /**
-     * 请求消息类型：地理位置
+     * 消息类型：音频
      */
-    String REQ_MESSAGE_TYPE_LOCATION = "location";
+    String MESSAGE_TYPE_VOICE = "voice";
 
     /**
-     * 请求消息类型：音频
+     * 消息类型：推送
      */
-    String REQ_MESSAGE_TYPE_VOICE = "voice";
-
-    /**
-     * 请求消息类型：推送
-     */
-    String REQ_MESSAGE_TYPE_EVENT = "event";
+    String MESSAGE_TYPE_EVENT = "event";
 
     /**
      * 事件类型：subscribe(订阅)
@@ -71,5 +66,7 @@ public interface GlobalConstant {
      * 事件类型：CLICK(自定义菜单点击事件)
      */
     String EVENT_TYPE_CLICK = "CLICK";
+
+    String REQUEST_FAILED = "请求失败, 系统异常";
 
 }

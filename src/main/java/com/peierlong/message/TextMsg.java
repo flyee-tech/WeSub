@@ -10,14 +10,14 @@ public class TextMsg extends BaseMsg{
     /*
      * 内容
      */
-    private String content;
+    private String Content;
 
     public String getContent() {
-        return content;
+        return Content;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.Content = content;
     }
 
 }

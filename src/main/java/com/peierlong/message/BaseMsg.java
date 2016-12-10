@@ -10,61 +10,61 @@ public class BaseMsg {
     /*
      * 加密后的微信号，每个用户对每个公众号的OpenID是唯一的
      */
-    private String openId;
+    private String ToUserName;
     /*
      * 开发者微信号, 公众号的id
      */
-    private String devWeId;
+    private String FromUserName;
     /*
      * 消息创建时间 （整型）
      */
-    private Long createTime;
+    private Long CreateTime;
     /*
      * 消息类型: text, image, voice, video, shortvideo, location, link, event
      */
-    private String type;
+    private String MsgType;
     /*
      * 消息id，64位整型
      */
-    private Long msgId;
+    private Long MsgId;
 
-    public String getOpenId() {
-        return openId;
+    public String getToUserName() {
+        return ToUserName;
     }
 
-    public void setOpenId(String openId) {
-        this.openId = openId;
+    public void setToUserName(String toUserName) {
+        this.ToUserName = toUserName;
     }
 
-    public String getDevWeId() {
-        return devWeId;
+    public String getFromUserName() {
+        return FromUserName;
     }
 
-    public void setDevWeId(String devWeId) {
-        this.devWeId = devWeId;
+    public void setFromUserName(String fromUserName) {
+        this.FromUserName = fromUserName;
     }
 
     public Long getCreateTime() {
-        return createTime;
+        return CreateTime;
     }
 
     public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
+        this.CreateTime = createTime;
     }
 
-    public String getType() {
-        return type;
+    public String getMsgType() {
+        return MsgType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMsgType(String msgType) {
+        this.MsgType = msgType;
     }
 
     public Long getMsgId() {
-        return msgId;
+        return MsgId;
     }
 
     public void setMsgId(Long msgId) {
-        this.msgId = msgId;
+        this.MsgId = msgId;
     }
 }
