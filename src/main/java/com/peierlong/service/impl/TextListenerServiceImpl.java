@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,19 +36,16 @@ public class TextListenerServiceImpl implements ListenerService {
         String fromUserName = map.get("FromUserName");
         String toUserName = map.get("ToUserName");
         String content = map.get("Content");
-
         try {
             content = sendToAlicloudIqa(content);
             logger.info("Alicloud 返回内容: " + content);
         } catch (Exception e) {
+            content = GlobalConstant.REQUEST_FAILED;
             e.printStackTrace();
         }
-
-
         content = parseAlicloudReply(content);
         TextMsg textMsg = MsgUtil.getTextMsg(toUserName, fromUserName, content);
-        String result = XmlUtil.textMsgToXml(textMsg);
-        return result;
+        return XmlUtil.textMsgToXml(textMsg);
     }
 
     private String sendToAlicloudIqa(String content) {
