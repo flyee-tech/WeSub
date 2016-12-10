@@ -37,9 +37,14 @@ public class TextListenerServiceImpl implements ListenerService {
         String fromUserName = map.get("FromUserName");
         String toUserName = map.get("ToUserName");
         String content = map.get("Content");
-        content = sendToAlicloudIqa(content);
 
-        logger.info("Alicloud 返回内容: " + content);
+        try {
+            content = sendToAlicloudIqa(content);
+            logger.info("Alicloud 返回内容: " + content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         content = parseAlicloudReply(content);
         TextMsg textMsg = MsgUtil.getTextMsg(toUserName, fromUserName, content);
@@ -54,7 +59,7 @@ public class TextListenerServiceImpl implements ListenerService {
         return HttpUtil.GET(aliIqaUrl, header, params);
     }
 
-    private String parseAlicloudReply(String content){
+    private String parseAlicloudReply(String content) {
         JSONObject object = JSON.parseObject(content);
         if (object.get("status").equals("0")) {
             JSONObject obj = object.getJSONObject("result");

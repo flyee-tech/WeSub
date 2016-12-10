@@ -7,12 +7,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -32,13 +34,13 @@ public class HttpUtil {
     private static CloseableHttpClient httpClient;
 
     public static String GET(String url, Map<String, String> params) {
-        httpClient = HttpClients.createDefault();
+        httpClient = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).setConnectionManagerShared(true).build();
         HttpGet httpGet = new HttpGet(buildGetParams(url, params));
         return sendGet(httpGet);
     }
 
     public static String GET(String url, Header header, Map<String, String> params) {
-        httpClient = HttpClients.createDefault();
+        httpClient = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).setConnectionManagerShared(true).build();
         HttpGet httpGet = new HttpGet(buildGetParams(url, params));
         httpGet.setHeader(header);
         return sendGet(httpGet);
@@ -46,6 +48,7 @@ public class HttpUtil {
 
     private static String sendGet(HttpGet httpGet) {
         MyResponseHandler<String> responseHandler = new MyResponseHandler<>();
+        httpGet.setConfig(RequestConfig.custom().setConnectTimeout(4500).setConnectionRequestTimeout(4500).build());
         try {
             return httpClient.execute(httpGet, responseHandler);
         } catch (IOException e) {
@@ -88,8 +91,9 @@ public class HttpUtil {
     }
 
     public static String POST(String url, Map<String, String> params) {
-        httpClient = HttpClients.createDefault();
+        httpClient = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).setConnectionManagerShared(true).build();
         HttpPost httpPost = new HttpPost(url);
+        httpPost.setConfig(RequestConfig.custom().setConnectTimeout(4500).setConnectionRequestTimeout(4500).build());
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(buildPostParams(params)));
             CloseableHttpResponse response = httpClient.execute(httpPost);
