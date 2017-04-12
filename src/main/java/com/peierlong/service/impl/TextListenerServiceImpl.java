@@ -36,6 +36,10 @@ public class TextListenerServiceImpl implements ListenerService {
         String fromUserName = map.get("FromUserName");
         String toUserName = map.get("ToUserName");
         String content = map.get("Content");
+        //把所有"查快递"替换为"单号"
+        if (content.contains("单号")) {
+            content = content.replaceFirst("^查快递.*$", "单号");
+        }
         try {
             content = sendToAlicloudIqa(content);
             logger.info("Alicloud 返回内容: " + content);
