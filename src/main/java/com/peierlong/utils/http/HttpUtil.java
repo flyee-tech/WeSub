@@ -90,10 +90,15 @@ public class HttpUtil {
         }
     }
 
-    public static String POST(String url, Map<String, String> params) {
+    public static String POST(String url, Header header, Map<String, String> params) {
         httpClient = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).setConnectionManagerShared(true).build();
         HttpPost httpPost = new HttpPost(url);
         httpPost.setConfig(RequestConfig.custom().setConnectTimeout(4500).setConnectionRequestTimeout(4500).build());
+        httpPost.setHeader(header);
+        return sendPost(params, httpPost);
+    }
+
+    private static String sendPost(Map<String, String> params, HttpPost httpPost) {
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(buildPostParams(params)));
             CloseableHttpResponse response = httpClient.execute(httpPost);
@@ -108,6 +113,13 @@ public class HttpUtil {
             e.printStackTrace();
             return GlobalConstant.REQUEST_FAILED;
         }
+    }
+
+    public static String POST(String url, Map<String, String> params) {
+        httpClient = HttpClients.custom().setConnectionManager(new PoolingHttpClientConnectionManager()).setConnectionManagerShared(true).build();
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.setConfig(RequestConfig.custom().setConnectTimeout(4500).setConnectionRequestTimeout(4500).build());
+        return sendPost(params, httpPost);
     }
 
     private static List<NameValuePair> buildPostParams(Map<String, String> params) {
