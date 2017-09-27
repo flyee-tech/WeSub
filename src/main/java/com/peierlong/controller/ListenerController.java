@@ -54,7 +54,7 @@ public class ListenerController extends BaseController{
     @RequestMapping(value = "/listener", method = {RequestMethod.GET})
     public String listener(String echostr) {
         logger.info("GET请求 > listener() > 参数:echostr = {}", echostr);
-        return echostr != null ? echostr : null;
+        return echostr;
     }
 
     @ResponseBody
