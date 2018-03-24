@@ -66,7 +66,9 @@ public class ListenerController extends BaseController{
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        if (requestContent == null) return GlobalConstant.SUCCESS;
+        if (requestContent == null) {
+            return GlobalConstant.SUCCESS;
+        }
         logger.info("POST请求 > listener() > 参数: request = {}", JSON.toJSONString(requestContent));
         String result = GlobalConstant.SUCCESS;
         switch (requestContent.get("MsgType")) {
