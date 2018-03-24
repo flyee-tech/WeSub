@@ -3,7 +3,7 @@ package com.peierlong.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.peierlong.message.TextMsg;
+import com.peierlong.bean.message.TextMsg;
 import com.peierlong.service.ListenerService;
 import com.peierlong.utils.GlobalConstant;
 import com.peierlong.utils.MsgUtil;

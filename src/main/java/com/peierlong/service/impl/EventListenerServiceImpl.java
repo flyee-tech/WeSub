@@ -1,6 +1,6 @@
 package com.peierlong.service.impl;
 
-import com.peierlong.message.TextMsg;
+import com.peierlong.bean.message.TextMsg;
 import com.peierlong.service.ListenerService;
 import com.peierlong.utils.MsgUtil;
 import com.peierlong.utils.XmlUtil;

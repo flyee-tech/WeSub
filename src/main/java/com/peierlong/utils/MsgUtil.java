@@ -1,6 +1,6 @@
 package com.peierlong.utils;
 
-import com.peierlong.message.TextMsg;
+import com.peierlong.bean.message.TextMsg;
 
 import java.util.Date;
 

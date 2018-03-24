@@ -1,6 +1,6 @@
 package com.peierlong.utils;
 
-import com.peierlong.message.TextMsg;
+import com.peierlong.bean.message.TextMsg;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;

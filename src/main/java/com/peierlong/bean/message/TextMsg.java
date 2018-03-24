@@ -1,4 +1,6 @@
-package com.peierlong.message;
+package com.peierlong.bean.message;
+
+import lombok.Data;
 
 /**
  * 包名: com.peierlong.entity
@@ -6,18 +8,11 @@ package com.peierlong.message;
  * 时间: 11/5/16 5:23 PM
  * 描述 : 文本消息实体类
  */
+@Data
 public class TextMsg extends BaseMsg{
-    /*
+    /**
      * 内容
      */
     private String Content;
-
-    public String getContent() {
-        return Content;
-    }
-
-    public void setContent(String content) {
-        this.Content = content;
-    }
 
 }
