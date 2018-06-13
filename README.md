@@ -1,4 +1,4 @@
-# WeSub
+# WeSub (已停止维护)
 WeSub(WeChat Subscription)是本人维护的关于微信公众号开发的开源项目。
 
 
